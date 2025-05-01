@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>✩</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: 'Poppins', sans-serif;
+      overflow: hidden;
+    }
+
+    body {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: black;
+    }
+
+    #background-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+    .profile-card {
+      background-color: #1b1b1b71;
+      border-radius: 20px;
+      padding-top: 20px;
+      padding-left: 5px;
+      padding-right: 5px;
+      width: 670px;
+      height: 400px;
+      overflow: hidden;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6); /* stronger "lifted" shadow */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      transition: transform 0.2s ease;
+      transform-style: preserve-3d;
+      will-change: transform;
+      margin: auto;
+      filter: drop-shadow(0 0 5px #454545);
+}
+
+    .header {
+      position: relative;
+      height: 160px;
+      background-color: #000;
+      overflow: hidden;
+    }
+
+    .header video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: blur(3px);
+    }
+
+    .header-content {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      padding: 20px;
+      z-index: 1;
+    }
+
+    .pfp {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin-right: 20px;
+      flex-shrink: 0;
+      border: 2px solid white;
+    }
+
+    .pfp video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: none !important;
+    }
+
+    .user-info {
+      color: white;
+    }
+
+    .user-info h1 {
+      font-size: 24px;
+      font-weight: 700;
+      color: #ff1bab;
+      text-shadow:
+      0 0 5px #ff9cce,
+      0 0 10px #ff9cce,
+      0 0 20px #ff9cce,          
+      0 0 30px #ff9cce,
+      0 0 40px #ff9cce,
+      0 0 50px #ff9cce;
+    }
+
+    .user-info p {
+      font-size: 14px;
+      color: #ff5ac2;
+      text-shadow:
+      0 0 5px #ffafe2,
+      0 0 10px #ffafe2,
+      0 0 20px #ffafe2,
+      0 0 30px #ffafe2,
+      0 0 40px #ffafe2,
+      0 0 50px #ffafe2;
+      font-weight: 700;
+    }
+
+    .icons {
+      margin-top: 8px;
+      filter: drop-shadow(0 0 5px #eaff74)
+          drop-shadow(0 0 10px #eaff74)
+          drop-shadow(0 0 20px #eaff74);
+    }
+
+    .icons img {
+      height: 20px;
+      width: 20px;
+      margin-right: 8px;
+      vertical-align: middle;
+    }
+
+    .content {
+      display: flex;
+      padding: 20px;
+      gap: 20px;
+    }
+
+    .discord-card {
+      background-color: #1f1f1f;
+      padding: 15px;
+      border-radius: 15px;
+      flex: 1;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-shadow: 0 0 6px rgba(255, 255, 255, 0.4);
+    }
+
+    .discord-top {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .discord-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+    }
+
+    .discord-name {
+      font-weight: 600;
+    }
+
+    .discord-status {
+      font-style: italic;
+      font-size: 14px;
+      color: #ccc;
+    }
+
+    .about {
+      flex: 2;
+      color: white;
+      text-shadow: 0 0 15px rgb(0, 0, 0);
+    }
+
+    .about h3 {
+      margin-bottom: 8px;
+      color: #ffffff;
+      text-shadow: 0 0 5px #ffffff,
+      0 0 10px #ffffff,
+      0 0 20px #ffffff,
+      0 0 30px #ffffff;
+    }
+
+    .about p {
+      color: #ffffff;
+      text-shadow: 0 0 5px #ffffff,
+      0 0 10px #ffffff,
+      0 0 20px #ffffff,
+      0 0 30px #ffffff;
+      font-size: 14px;
+    }
+
+    @media (max-width: 700px) {
+      .profile-card {
+        width: 95%;
+      }
+
+      .content {
+        flex-direction: column;
+      }
+    }
+
+    .sparkle-wrapper {
+        position: relative;
+}
+
+.sparkle {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: conic-gradient(from 0deg, #98eaff 0deg 45deg, transparent 45deg 90deg, #98eaff 90deg 135deg, transparent 135deg 180deg, #98eaff 180deg 225deg, transparent 225deg 270deg, #98eaff 270deg 315deg, transparent 315deg 360deg);
+  border-radius: 50%;
+  opacity: 0.8;
+  animation: sparkleAnim 1.2s infinite ease-in-out;
+  filter: drop-shadow(0 0 6px #bcfff3) drop-shadow(0 0 12px #bcfff3);
+}
+
+    @keyframes sparkleAnim {
+        0% {
+        transform: scale(0.5);
+        opacity: 0.7;
+  }
+        50% {
+        transform: scale(1.5);
+        opacity: 1;
+        box-shadow: 0 0 10px #eba9ff, 0 0 10px #e89eff;
+  }
+        100% {
+        transform: scale(0.5);
+        opacity: 0.7;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <video id="background-video" autoplay muted loop playsinline>
+    <source src="snow.mp4" type="video/mp4" />
+  </video>
+
+  <audio autoplay loop>
+    <source src="ok.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <div class="profile-card">
+    <div class="header">
+      <video src="usagi.mp4" autoplay muted loop playsinline></video>
+      <div class="header-content">
+        <div class="sparkle-wrapper">
+            <div class="pfp">
+              <video src="pfp.mp4" autoplay muted loop playsinline></video>
+            </div>
+            <div class="sparkle" style="top: -5px; left: -5px;"></div>
+            <div class="sparkle" style="top: 60px; left: 60px;"></div>
+            <div class="sparkle" style="top: 20px; left: 70px;"></div>
+          </div>
+        <div class="user-info">
+            <div class="sparkle-wrapper">
+                <h1>Sensitivess</h1>
+                <div class="sparkle" style="top: 0px; left: 0px;"></div>
+                <div class="sparkle" style="top: 5px; left: 110px;"></div>
+              </div>
+          <p>What if your whole life was a lie?</p>
+          <div class="icons">
+            <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png" alt="Discord">
+            <img src="https://cdn-icons-png.flaticon.com/512/733/733553.png" alt="GitHub">
+            <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content">
+      <div class="discord-card">
+        <div class="discord-top">
+          <img src="avatar.png" class="discord-avatar" alt="Avatar">
+          <div class="discord-name">Rvemiw99</div>
+        </div>
+        <div class="discord-status">Uni Life</div>
+      </div>
+      <div class="about">
+        <h3>About Me:</h3>
+        <p>Life would be a dream if I'm a cat and sleeping 24/7.</p>
+      </div>
+    </div>
+  </div>
+  <script>
+    const card = document.querySelector('.profile-card');
+    
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+    
+      const rotateY = ((x / rect.width) - 0.5) * 35;  // rotateY = left/right tilt
+      const rotateX = ((y / rect.height) - 0.5) * -35; // rotateX = top/bottom tilt (invert direction)
+    
+      card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    });
+    
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'rotateX(0deg) rotateY(0deg)';
+    });
+    </script>       
+</body>
+</html>
